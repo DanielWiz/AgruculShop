@@ -1,0 +1,47 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+
+<form class="formulario" action="/guardarProducto" method="post">
+  {% csrf_token %}
+  <h2>Ingresar Producto</h2>
+    <div class="contenedor">
+      <div class="input-contenedor">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="txtNombre" required placeholder="Nombre Producto">
+      </div>
+
+      <div class="input-contenedor">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="txtDescripcion" required placeholder="Descripción producto">
+      </div>
+
+      <div class="input-contenedor">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="txtPrecio" required placeholder="Precio Producto">
+      </div>      
+
+      <div class="input-contenedor">
+        <i class="fas fa-user icon"></i>
+        <input type="file" name="txtImagenProducto" required placeholder="Ocupación">
+      </div>
+
+      <div class="input-contenedor">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="txtStock" required placeholder="Stock del producto">
+      </div>
+
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-info" type="submit">Agregar</button>
+        </div>
+      </div>     
+    </div>
+  </form>
+
+<div class="row">
+    <div class="col text-center">
+      <a id="linkVolver" href="/" class="btn btn-info" role="button">Volver</a>
+    </div>    
+</div> 
+
+{% endblock %}

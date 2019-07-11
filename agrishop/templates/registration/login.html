@@ -1,0 +1,24 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+
+<div style="margin: 12px; text-align: center;">		
+	<h2>Login</h2>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<p>No tienes cuenta? <a class="btn btn-link" href="/registro">Registrate</a></p>
+		<div class="row">
+			<div class="col text-center">
+				<button class="btn btn-success" type="submit">Ingresar</button>
+			</div>			
+		</div>
+	</form>
+	<div class="row">
+		<div class="col text-center">
+			<a href="/" class="btn btn-success" role="button">Volver</a>
+		</div>		
+	</div>
+	
+</div>
+
+{% endblock %}

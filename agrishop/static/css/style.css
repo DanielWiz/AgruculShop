@@ -529,7 +529,7 @@ footer {
 	color: #0dbe33;	
 }
 .f-about a h1 span {
-	color: #270dbe;	
+	color: #02b81ad5;	
 }
 .f-about p {
   font-size: 14px;
@@ -551,7 +551,7 @@ footer {
 }
 
 .l-posts li a:hover  {
-  color: #0d2dbe;
+  color: #02b81ad5;
 }
 
 .f-contact p {
@@ -574,7 +574,7 @@ footer {
 }
 .last-div {
 	margin-top:40px;
-    background: #270dbe;
+    background: #02b81ad5;
     padding: 20px 0;
     position: relative;
 }

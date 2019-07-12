@@ -10,8 +10,10 @@
 						      	<li>
 						       		<h3>Producto N°{{ p.codigo_producto }}: {{ p.nombre }}</h3>
 									<h4>Descripción: {{ p.descripcion }}</h4>
-						        	<h4>Stock: {{p.stock}}</h4>					        	
+						        	<h4>Stock: {{p.stock}}</h4>
+						        	<h4>Productor N° {{p.Usuario.id}}: {{p.Usuario}}</h4>				        			        	
 						        	<img class="img-rounded" alt="Aquí había una imagen" style="width: 512px;" src="{{ p.imagen_producto.url }}" >
+						        	
 						        </li>
 						    	{% endfor %}
 						    </ul>

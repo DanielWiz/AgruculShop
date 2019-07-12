@@ -57,8 +57,8 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="text-center">
-        <h2>Galleries</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Cras suscipit arcu<br> vestibulum volutpat libero sollicitudin vitae Curabitur ac aliquam <br>
+        <h2>Galería de productos de la página</h2>
+        <p>En esta galeria usted podra ver los producto que se ofrecen en esta pagina, ademas de datos sobre el vendedor<br>
         </p>
       </div>
       <hr>
@@ -68,60 +68,24 @@
 
 <div class="content">
   <div class="grid">
+    {% if productos %}
+    {% for p in productos %}
     <figure class="effect-zoe">
-      <img src="img/25.jpg" alt="img25" />
+      <img class="img-responsive" src="{{p.imagen_producto.url}}" style="width: 512px;" alt="Aquí había una imgaen de un producto" />
       <figcaption>
-        <h2>Title <span>Name</span></h2>
+        <h2><span>{{p.nombre}}</span></h2>
         <p class="icon-links">
           <a href="#"><span class="icon-heart"></span></a>
           <a href="#"><span class="icon-eye"></span></a>
           <a href="#"><span class="icon-paper-clip"></span></a>
         </p>
-        <p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>
+        <p class="description">{{p.descripcion}}<br>Productor: {{p.Usuario}}</p>        
       </figcaption>
     </figure>
-    <figure class="effect-zoe">
-      <img src="img/26.jpg" alt="img26" />
-      <figcaption>
-        <h2>Title <span>Name</span></h2>
-        <p class="icon-links">
-          <a href="#"><span class="icon-heart"></span></a>
-          <a href="#"><span class="icon-eye"></span></a>
-          <a href="#"><span class="icon-paper-clip"></span></a>
-        </p>
-        <p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>
-      </figcaption>
-    </figure>
+    {% endfor %}
+    {% else %}
+      <p>No hay productos registrados.</p>
+    {% endif %}     
   </div>
 </div>
-
-<div class="content">
-  <div class="grid">
-    <figure class="effect-zoe">
-      <img src="img/27.jpg" alt="img27" />
-      <figcaption>
-        <h2>Title <span>Name</span></h2>
-        <p class="icon-links">
-          <a href="#"><span class="icon-heart"></span></a>
-          <a href="#"><span class="icon-eye"></span></a>
-          <a href="#"><span class="icon-paper-clip"></span></a>
-        </p>
-        <p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>
-      </figcaption>
-    </figure>
-    <figure class="effect-zoe">
-      <img src="img/30.jpg" alt="img30" />
-      <figcaption>
-        <h2>Title <span>Name</span></h2>
-        <p class="icon-links">
-          <a href="#"><span class="icon-heart"></span></a>
-          <a href="#"><span class="icon-eye"></span></a>
-          <a href="#"><span class="icon-paper-clip"></span></a>
-        </p>
-        <p class="description">Zoe never had the patience of her sisters. She deliberately punched the bear in his face.</p>
-      </figcaption>
-    </figure>
-  </div>
-</div>
-
 {% endblock %}

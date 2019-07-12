@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Producto
+from .models import Producto, User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import UserCreationForm
@@ -13,7 +13,12 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 
 # Create your views here.
 def inicio(request):
-    return render(request, 'agrishop/index.html', {})
+    cargarProductos = Producto.objects.all()
+    template = loader.get_template('agrishop/index.html')
+    context = {
+        'productos' : cargarProductos,
+    }
+    return HttpResponse(template.render(context, request))
 
 def mapa(request):
     return render(request, 'agrishop/mapa.html', {})
@@ -65,8 +70,9 @@ def listadoProductos(request):
     }
     return HttpResponse(template.render(context, request))
 
-def administrarProductos(request):
-    cargarProductos = Producto.objects.all()
+def administrarProductos(request, usuario_id): 
+    user = request.user
+    cargarProductos = Producto.objects.filter(Usuario = user)    
     template = loader.get_template('agrishop/administrarProductos.html')
     context = {
         'productos' : cargarProductos,

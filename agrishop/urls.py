@@ -22,6 +22,7 @@ urlpatterns = [
     path('detalleProducto/<int:producto_id>', views.detalleProducto, name='detalleProducto'),
     path('modificarProducto/<int:producto_id>', views.modificarProducto, name='modificarProducto'),
     path('confirmarModificacion/<int:producto_id>', views.confirmarModificacion, name='confirmarModificacion'),
+    path('guardarComentario/<int:producto_id>', views.guardarComentario, name='guardarComentario'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

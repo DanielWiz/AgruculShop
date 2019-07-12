@@ -47,12 +47,13 @@ def cargarFormularioProducto(request):
     return render(request, 'agrishop/formularioProducto.html', {})
 
 def guardarProducto(request):
+    user = request.user
     nombre = request.POST['txtNombre']
     descripcion = request.POST['txtDescripcion']
     precio = request.POST['txtPrecio']
     imagen_producto = request.FILES['txtImagenProducto']
     stock = request.POST['txtStock']  
-    p = Producto(nombre =nombre ,descripcion = descripcion ,precio = precio ,imagen_producto = imagen_producto ,stock = stock)
+    p = Producto(Usuario=user,nombre=nombre ,descripcion = descripcion ,precio = precio ,imagen_producto = imagen_producto ,stock = stock)
     p.save()
     return render(request, 'agrishop/guardarProducto.html', {'nombre': nombre})
 

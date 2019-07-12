@@ -12,9 +12,6 @@
 @import url('animate.css');
 /* 
 MAPA */
-.myfieldclass{
-  margin-left: 1px;
-}
 
 .marker {
   background-image: url('img/controls.png');

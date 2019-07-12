@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Producto, User
+from .models import Producto, User, Comentario
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import UserCreationForm
@@ -56,6 +56,9 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/registro.html', {'form': form})
 
+def editarPerfil(request):
+    return render(request, 'agrishop/editarPerfil.html')
+
 def cargarFormularioProducto(request):
     return render(request, 'agrishop/formularioProducto.html', {})
 
@@ -78,6 +81,7 @@ def listadoProductos(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required
 def administrarProductos(request): 
     user = request.user
     cargarProductos = Producto.objects.filter(Usuario = user)    
@@ -95,6 +99,15 @@ def borrarProducto(request, producto_id):
 def detalleProducto(request, producto_id):
     productoEncontrado = Producto.objects.get(pk=producto_id)
     return render(request, 'agrishop/detalleProducto.html', {'productoEncontrado':productoEncontrado})
+
+def guardarComentario(request, producto_id):
+    coment_producto = Producto.objects.get(pk=producto_id)
+    codigo_producto = coment_producto
+    autor = request.POST['txtAutor']
+    comentario = request.POST['txtComentario']
+    c = Comentario(autor = autor, comentario = comentario, codigo_producto = codigo_producto)
+    c.save()
+    return render(request, 'agrishop/guardarComentario.html')
 
 def modificarProducto(request, producto_id):
     productoAActualizar=Producto.objects.get(pk=producto_id)

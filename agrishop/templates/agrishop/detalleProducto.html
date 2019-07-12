@@ -7,11 +7,7 @@
 		<div class="form-group">
 	      <label for="usr">Nombre producto:</label>
 	      <input type="text" value="{{productoEncontrado.nombre}}" class="form-control" readonly required>
-	    </div>
-	    <div class="form-group">
-	      <label for="usr">Descripción producto:</label>
-	      <input type="text" value="{{productoEncontrado.descripcion}}" class="form-control" readonly required>
-	    </div>
+	    </div>	    
 	    <div class="form-group">
 	      <label for="usr">Descripción producto:</label>
 	      <input type="text" value="{{productoEncontrado.descripcion}}" class="form-control" readonly required>
@@ -26,10 +22,38 @@
 	    </div>
 	    <img class="img-rounded" alt="Aquí había una imagen" style="width: 512px;" src="{{ productoEncontrado.imagen_producto.url }}">	    
 	</div>
+
+	<h3>Deja tu comentario sobre este producto:</h3>
+	<form method="post" action="/guardarComentario/{{productoEncontrado.codigo_producto}}">
+		{% csrf_token %}
+		<div class="form-group">
+	      <label for="usr">Autor:</label>
+	      <input type="text" name="txtAutor" class="form-control"  required>
+	    </div>
+	    <div class="form-group">
+	      <label for="usr">Detalle:</label>
+	      <input type="text" name="txtComentario" class="form-control"  required>
+	    </div>
+	    <div class="row">
+		    <div class="col text-center">
+		    	<button class="btn btn-success" type="submit">Enviar comentario</button>
+		    </div>    
+		</div>
+	</form>
+
 	<div class="row">
 		<div class="col text-center">
-			<a href="/administrarProductos" class="btn btn-success" role="button">Volver a administración</a>
+			<a onclick="goBack()" class="btn btn-success" role="button">Volver</a>
 		</div>		
 	</div>
+
+	
+
+	<script>
+	function goBack() {
+	  window.history.back();
+	}
+	</script>
+
 </div>
 {% endblock %}

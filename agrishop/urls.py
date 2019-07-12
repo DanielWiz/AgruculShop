@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('galeria', views.galeria, name='galeria'),
     path('login', views.login, name='login'),
+    path('editarPerfil', views.editarPerfil, name="editarPerfil"),
     path('registro/', core_views.signup, name='signup'),
     path('agregarProducto', views.cargarFormularioProducto, name='cargarFormularioProducto'),
     path('guardarProducto', views.guardarProducto, name='guardarProducto'),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('detalleProducto/<int:producto_id>', views.detalleProducto, name='detalleProducto'),
     path('modificarProducto/<int:producto_id>', views.modificarProducto, name='modificarProducto'),
     path('confirmarModificacion/<int:producto_id>', views.confirmarModificacion, name='confirmarModificacion'),
+    path('guardarComentario/<int:producto_id>', views.guardarComentario, name='guardarComentario'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

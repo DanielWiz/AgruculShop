@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('galeria', views.galeria, name='galeria'),
     path('login', views.login, name='login'),
+    path('editarPerfil', views.editarPerfil, name="editarPerfil"),
     path('registro/', core_views.signup, name='signup'),
     path('agregarProducto', views.cargarFormularioProducto, name='cargarFormularioProducto'),
     path('guardarProducto', views.guardarProducto, name='guardarProducto'),

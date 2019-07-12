@@ -56,6 +56,9 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/registro.html', {'form': form})
 
+def editarPerfil(request):
+    return render(request, 'agrishop/editarPerfil.html')
+
 def cargarFormularioProducto(request):
     return render(request, 'agrishop/formularioProducto.html', {})
 

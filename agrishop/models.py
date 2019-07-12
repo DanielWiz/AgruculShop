@@ -30,3 +30,11 @@ class Producto(models.Model):
 	stock = models.IntegerField(default=0)
 	def __str__(self):
 		return "%s. %s" % (self.codigo_producto, self.nombre)
+
+class Comentario(models.Model):
+	codigo = models.AutoField(primary_key=True)
+	autor = models.CharField(max_length=60)
+	comentario = models.CharField(max_length=250)
+	codigo_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+	def __str__(self):
+		return self.comentario

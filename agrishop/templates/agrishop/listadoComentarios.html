@@ -1,0 +1,28 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+<br>
+<div class="container">
+	<h2>Comentarios de personas sobre productos de la página:</h2>
+	<div class="row">
+		{% if comentarios %}
+		   	<ul>
+		    	{% for c in comentarios %}
+		     	<li>
+		       		<h3>Autor: {{ c.autor }}</h3>
+					<h4>Detalle comentario: {{ c.comentario }}</h4>	
+					<h4>Producto relacionado: {{c.codigo_producto}}</h4>	        	
+				</li>
+			 	{% endfor %}
+		    </ul>
+				{% else %}
+				    <p>No hay comentarios registrados.</p>
+		{% endif %}						
+	</div>
+	<div class="row">
+		<div class="col text-center">
+			<a href="/" class="btn btn-success" role="button">Volver</a>
+		</div>		
+	</div>
+</div>
+
+{% endblock %}

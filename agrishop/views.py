@@ -100,6 +100,14 @@ def detalleProducto(request, producto_id):
     productoEncontrado = Producto.objects.get(pk=producto_id)
     return render(request, 'agrishop/detalleProducto.html', {'productoEncontrado':productoEncontrado})
 
+def listadoComentarios(request):    
+    cargarComentarios = Comentario.objects.all()
+    template = loader.get_template('agrishop/listadoComentarios.html')
+    context = {
+        'comentarios' : cargarComentarios,
+    }
+    return HttpResponse(template.render(context, request))
+
 def guardarComentario(request, producto_id):
     coment_producto = Producto.objects.get(pk=producto_id)
     codigo_producto = coment_producto

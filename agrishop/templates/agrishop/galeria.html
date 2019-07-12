@@ -1,0 +1,38 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="text-center">
+        <h2>Galería de productos de la página</h2>
+        <p>En esta galeria usted podra ver los producto que se ofrecen en esta pagina, ademas de datos sobre el vendedor<br>
+        </p>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="grid">
+    {% if productos %}
+    {% for p in productos %}
+    <figure class="effect-zoe">
+      <img class="img-responsive" src="{{p.imagen_producto.url}}" style="width: 512px;" alt="Aquí había una imgaen de un producto" />
+      <figcaption>
+        <h2><span>{{p.nombre}}</span></h2>
+        <p class="icon-links">
+          <a href="#"><span class="icon-heart"></span></a>
+          <a href="#"><span class="icon-eye"></span></a>
+          <a href="#"><span class="icon-paper-clip"></span></a>
+        </p>
+        <p class="description">{{p.descripcion}}<br>Productor: {{p.Usuario}}</p>        
+      </figcaption>
+    </figure>
+    {% endfor %}
+    {% else %}
+      <p>No hay productos registrados.</p>
+    {% endif %}     
+  </div>
+</div>
+{% endblock %}

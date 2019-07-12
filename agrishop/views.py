@@ -20,6 +20,14 @@ def inicio(request):
     }
     return HttpResponse(template.render(context, request))
 
+def galeria(request):
+    cargarProductos = Producto.objects.all()
+    template = loader.get_template('agrishop/galeria.html')
+    context = {
+        'productos' : cargarProductos,
+    }
+    return HttpResponse(template.render(context, request))
+
 def mapa(request):
     return render(request, 'agrishop/mapa.html', {})
 

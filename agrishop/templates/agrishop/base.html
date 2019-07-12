@@ -42,7 +42,12 @@
           {% if user.is_authenticated %}
           <ul class="nav nav-tabs" role='tablist'>   
             <li role='presentation'><a href="{% url 'listadoProductos' %}">Listado productos de la página</a></li>            
+<<<<<<< HEAD
             <li role='presentation'><a href="/administrarProductos/{{user.id}}">Administrar mis productos</a></li>
+=======
+            <li role='presentation'><a href="{% url 'administrarProductos' %}">Administrar mis productos</a></li>
+            <li role='presentation'><a href="{% url 'mapa' %}">Mapa</a></li>
+>>>>>>> 6e56d4322c784326ab0de1fd63dca11f804e3ca9
             <li role='presentation'><a href="{% url 'logout' %}">Cerrar Sesión</a></li>            
           </ul>
           

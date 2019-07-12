@@ -1,26 +1,29 @@
 {% extends 'agrishop/base.html' %}
 {% block content %}
-
 <div class="container">
-	<h2>Listado de productos: </h2>
+	<h2>Listado de productos<br><small>Vea aquí todos los productos registrados por los productores de la página</small> </h2>
 		<div class="col-lg-12">
 					<div class="row">
 						{% if productos %}
-					   		<ul>
-					    		{% for p in productos %}					    			
-					    			<li>Producto: {{ p.codigo_producto }} {{ p.nombre }} {{ p.descripcion }} 		<img src="{{ p.imagen_producto.url }}" >	</li>
-					    		{% endfor %}
-					    	</ul>
+					    	<ul>
+						    	{% for p in productos %}
+						      	<li>
+						       		<h3>Producto N°{{ p.codigo_producto }}: {{ p.nombre }}</h3>
+									<h4>Descripción: {{ p.descripcion }}</h4>
+						        	<h4>Stock: {{p.stock}}</h4>					        	
+						        	<img class="img-rounded" alt="Aquí había una imagen" style="width: 512px;" src="{{ p.imagen_producto.url }}" >
+						        </li>
+						    	{% endfor %}
+						    </ul>
 						{% else %}
-					    	<p>No hay productos registrados.</p>
-						{% endif %}
+						    <p>No hay productos registrados.</p>
+						{% endif %}						
 					</div>
 				<div class="row">
 					<div class="col text-center">
-						<a id="linkVolver" href="/" class="btn btn-info" role="button">Volver</a>
+						<a id="linkVolver" href="/" class="btn btn-success" role="button">Volver</a>
 					</div>		
 				</div>
 			</div>
 </div>
-
 {% endblock %}

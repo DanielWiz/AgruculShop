@@ -1,0 +1,47 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+<div class="container">
+	<h2>Mis productos</h2>
+		{% if productos %}
+			<div class="row">
+				<div class="col text-right">
+					<a href="/agregarTaller" class="btn-lg btn-info">Agregar Producto</a>
+				</div>		
+			</div>							
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Código</th>
+					    <th>Nombre Producto</th>
+					    <th>Descripción</th>					    
+					    <th>Opciones</th>
+					</tr>
+				</thead>
+				{% for p in productos|dictsort:"codigo_producto" %}
+				<tbody>
+					<tr>
+						<td><strong>{{p.codigo_producto}}</strong></td>
+					    <td><strong>{{p.nombre}}</strong></td>
+					    <td><strong>{{p.descripcion}}</strong></td>						    
+					    <td><a href="/detalleProducto/{{ p.codigo_producto }}" class="btn-lg btn-success" >Ver</a></td>
+					    <td><a href="/modificarProducto/{{ p.codigo_producto }}" class="btn-lg btn-info" >Modificar</a></td>
+					    <td><a href="/borrarProducto/{{ p.codigo_producto }}" class="btn-lg btn-danger">Eliminar</a></td>
+					</tr>			      
+				</tbody>
+				{% endfor %}
+			</table>	
+		{% else %}
+			<div class="row">
+				<div class="col text-right">
+					<a href="/agregarProducto" class="btn-lg btn-info">Agregar Producto</a>
+				</div>		
+			</div>
+			<p>No Hay Productos registrados.</p>
+		{% endif %}
+	<div class="row">
+		<div class="col text-center">
+			<a href="/" class="btn btn-success" role="button">Volver</a>
+		</div>		
+	</div>
+</div>
+{% endblock %}

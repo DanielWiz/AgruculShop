@@ -1,0 +1,42 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+<div class="container">
+	<h2>Datos producto N°{{productoAActualizar.codigo_producto}}:</h2>
+	<div class="container">
+		<form method="post" action="/confirmarModificacion/{{productoAActualizar.codigo_producto}}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group">
+		      <label for="usr">Nombre producto:</label>
+		      <input type="text" name="txtNuevoNombre" value="{{productoAActualizar.nombre}}" class="form-control" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="usr">Descripción producto:</label>
+		      <input type="text" name="txtNuevoDescripcion" value="{{productoAActualizar.descripcion}}" class="form-control" required>
+		    </div>		    	
+		    <div class="form-group">
+		      <label for="usr">Precio producto:</label>
+		      <input type="text" name="txtNuevoPrecio" value="{{productoAActualizar.precio}}" class="form-control" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="usr">Stock producto:</label>
+		      <input type="text" name="txtNuevoStock" value="{{productoAActualizar.stock}}" class="form-control" required>
+		    </div>
+		    <div class="form-group">
+		      <label for="usr">Imagen producto:</label>
+		      <input type="file" name="txtNuevoImagen" value="{{productoAActualizar.img}}" class="form-control">
+		    </div>
+		    <img class="img-rounded" alt="Aquí había una imagen" style="width: 512px;" src="{{ productoAActualizar.imagen_producto.url }}">
+		    <div class="row">
+		      <div class="col text-center">
+		        <button class="btn btn-success" type="submit">Actualizar Producto</button>
+		      </div>    
+		    </div>
+		</form>			    
+	</div>
+	<div class="row">
+	    <div class="col text-center">
+	      <a href="/" class="btn btn-info" role="button">Volver</a>
+	    </div>    
+	  </div>
+</div>
+{% endblock %}

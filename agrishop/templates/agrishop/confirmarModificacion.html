@@ -1,0 +1,15 @@
+{% extends 'agrishop/base.html' %}
+{% block content %}
+<div class="container">
+	<div class="alert alert-success">
+		<strong>Producto {{productoModificado.nombre}} actualizado con éxito!</strong>
+	</div>
+
+	<div class="row">
+		<div class="col text-center">
+			<a href="/administrarProductos" class="btn btn-success" role="button">Volver a administración</a>
+		</div>		
+	</div>
+
+</div>
+{% endblock %}

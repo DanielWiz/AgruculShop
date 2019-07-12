@@ -36,3 +36,14 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class SignUpForm(UserCreationForm):
+    Fecha_Nacimiento = forms.DateField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    Nombre = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    Apellido = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    Rut = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'Fecha_Nacimiento','Nombre','Apellido','Rut', 'password1', 'password2', )

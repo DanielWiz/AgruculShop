@@ -6,10 +6,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from .forms import UserCreationForm
 from django.template import loader
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from .forms import SignUpForm
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 # Create your views here.
 def inicio(request):
     return render(request, 'agrishop/index.html', {})
+
+def mapa(request):
+    return render(request, 'agrishop/mapa.html', {})
 
 def login(request):
 	return render(request, 'agrishop/login.html', {})
@@ -19,16 +26,20 @@ def cargarRegistro(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.Fecha_Nacimiento = form.cleaned_data.get('Fecha_Nacimiento')
+            user.profile.Rut = form.cleaned_data.get('Rut')
+            user.profile.Nombre = form.cleaned_data.get('Nombre')
+            user.profile.Apellido = form.cleaned_data.get('Apellido')
+            user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
+            user = authenticate(username=user.username, password=raw_password)
             return redirect('/')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'registration/registro.html', {'form': form})
 
 def cargarFormularioProducto(request):
@@ -51,3 +62,34 @@ def listadoProductos(request):
         'productos' : cargarProductos,
     }
     return HttpResponse(template.render(context, request))
+
+def administrarProductos(request):
+    cargarProductos = Producto.objects.all()
+    template = loader.get_template('agrishop/administrarProductos.html')
+    context = {
+        'productos' : cargarProductos,
+    }
+    return HttpResponse(template.render(context, request))
+
+def borrarProducto(request, producto_id):
+    productoParaBorrar = Producto.objects.get(pk=producto_id)
+    productoParaBorrar.delete()
+    return render(request, 'agrishop/productoEliminado.html')
+
+def detalleProducto(request, producto_id):
+    productoEncontrado = Producto.objects.get(pk=producto_id)
+    return render(request, 'agrishop/detalleProducto.html', {'productoEncontrado':productoEncontrado})
+
+def modificarProducto(request, producto_id):
+    productoAActualizar=Producto.objects.get(pk=producto_id)
+    return render(request, 'agrishop/formularioActualizarProducto.html', {'productoAActualizar':productoAActualizar})
+
+def confirmarModificacion(request, producto_id):
+    productoModificado = Producto.objects.get(pk=producto_id)
+    productoModificado.nombre=request.POST["txtNuevoNombre"]
+    productoModificado.descripcion=request.POST["txtNuevoDescripcion"]
+    productoModificado.precio=request.POST["txtNuevoPrecio"]
+    productoModificado.stock=request.POST["txtNuevoStock"]  
+    productoModificado.imagen_producto=request.FILES["txtNuevoImagen"]     
+    productoModificado.save()
+    return render(request, 'agrishop/confirmarModificacion.html' , {'productoModificado.nombre':productoModificado.nombre})

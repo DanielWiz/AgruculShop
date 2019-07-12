@@ -70,7 +70,7 @@ def listadoProductos(request):
     }
     return HttpResponse(template.render(context, request))
 
-def administrarProductos(request, usuario_id): 
+def administrarProductos(request): 
     user = request.user
     cargarProductos = Producto.objects.filter(Usuario = user)    
     template = loader.get_template('agrishop/administrarProductos.html')

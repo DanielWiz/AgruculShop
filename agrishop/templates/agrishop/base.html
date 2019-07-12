@@ -42,7 +42,8 @@
       <div class="navbar-collapse collapse">
         <div class="menu">
           {% if user.is_authenticated %}
-          <ul class="nav nav-tabs" role='tablist'>   
+          <ul class="nav nav-tabs" role='tablist'>
+            <li role="presentation"><a href="{% url 'inicio' %}">Inicio</a></li>   
             <li role='presentation'><a href="{% url 'listadoProductos' %}">Listado productos de la página</a></li>
             <li role='presentation'><a href="{% url 'administrarProductos' %}">Administrar mis productos</a></li>
             <li role='presentation'><a href="{% url 'mapa' %}">Mapa</a></li>
@@ -52,7 +53,8 @@
           {% else %}
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation"><a href="{% url 'inicio' %}">Inicio</a></li> 
-            <li role="presentation"><a href="{% url 'galeria' %}">Galeria de productos</a></li>           
+            <li role="presentation"><a href="{% url 'galeria' %}">Galeria de productos</a></li>  
+            <li role='presentation'><a href="{% url 'listadoProductos' %}">Listado productos de la página</a></li>
             <li role="presentation"><a href="/accounts/login">Login</a></li>
           </ul>
           {% endif %}

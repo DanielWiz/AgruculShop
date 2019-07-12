@@ -78,6 +78,7 @@ def listadoProductos(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required
 def administrarProductos(request): 
     user = request.user
     cargarProductos = Producto.objects.filter(Usuario = user)    
